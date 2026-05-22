@@ -1,0 +1,112 @@
+{
+	"info": {
+		"name": "Advanced Task Management API",
+		"description": "API collection for the Task Management System BRD.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"url": {"raw": "http://localhost:5000/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "register"]},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@system.com\",\n  \"password\": \"password123\",\n  \"role\": \"ADMIN\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"url": {"raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "login"]},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"admin@system.com\",\n  \"password\": \"password123\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Get Profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}
+						],
+						"url": {"raw": "http://localhost:5000/api/auth/profile", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "auth", "profile"]}
+					}
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create Task (Admin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"},
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"url": {"raw": "http://localhost:5000/api/tasks", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "tasks"]},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Setup CI/CD Pipeline\",\n  \"description\": \"Configure GitHub Actions for deployment\",\n  \"priority\": \"HIGH\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Get All Tasks",
+					"request": {
+						"method": "GET",
+						"header": [
+							{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}
+						],
+						"url": {"raw": "http://localhost:5000/api/tasks", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "tasks"]}
+					}
+				},
+				{
+					"name": "Update Task Status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"},
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"url": {"raw": "http://localhost:5000/api/tasks/TASK_ID_HERE/status", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "tasks", "TASK_ID_HERE", "status"]},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"IN_PROGRESS\"\n}"
+						}
+					}
+				},
+				{
+					"name": "Assign Task (Admin)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"},
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"url": {"raw": "http://localhost:5000/api/tasks/TASK_ID_HERE/assign", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api", "tasks", "TASK_ID_HERE", "assign"]},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"userId\": \"USER_ID_HERE\"\n}"
+						}
+					}
+				}
+			]
+		}
+	]
+}
